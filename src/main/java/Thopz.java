@@ -8,7 +8,7 @@ public class Thopz {
             "How may I help you?" ;
     public static String goodbye = "Chaoz. See you ! ";
 
-    // Greetings and goodbye with a 3 sec delay
+    // Repetition of words for chatbot
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
