@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Thopz {
 
     public String bot = "thopz";
@@ -9,14 +11,18 @@ public class Thopz {
     // Greetings and goodbye with a 3 sec delay
     public static void main(String[] args) {
 
-        System.out.println("" + greetings);
+        Scanner scan = new Scanner(System.in);
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        System.out.println("" + greetings);
+        String repeat = scan.next();
+
+        while (!repeat.equals("bye")) {
+            System.out.println("" + repeat);
+            repeat = scan.next();
         }
+
         System.out.println("" + goodbye);
+
 
     }
 }
