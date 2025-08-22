@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,24 +16,43 @@ public class Thopz {
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
-        List<String> ls = new ArrayList<>();
+        List<Task> ls = new ArrayList<>();
+
 
         System.out.println("" + greetings);
-        String repeat = scan.next();
+        Task repeat = new Task(scan.nextLine());
 
 
-        while (!repeat.equals("bye")) {
-            if(repeat.equals("list")) {
+        while (!repeat.getTasks().equals("bye")) {
+            if(repeat.getTasks().equals("list")) {
                 for(int i= 0; i< ls.size(); i++) {
                     System.out.println((i+1) + ". " + ls.get(i));
                 }
                 }
-            else {
-                ls.add(repeat);
-                System.out.println("added: " + repeat);
+
+            else if (repeat.getTasks().startsWith("mark")) {
+               try {
+                   String[] parts = repeat.getTasks().split(" ");
+                   int no = Integer.parseInt(parts[1]);
+                   if(no>=1 && no<= ls.size()) {
+                       ls.get(no-1).markTask();
+                       System.out.println("Solidd! I have marked this task as done \n"  + ls.get(no-1).getTasks());
+                   }
+                   else {
+                       System.out.println("bruh, out of range");
+                   }
+               }
+               catch (NumberFormatException e) {
+                   System.out.println("no valid number");
+               }
             }
 
-            repeat = scan.next();
+            else {
+                ls.add(repeat);
+                System.out.println("added: " + repeat.getTasks());
+            }
+
+            repeat = new Task(scan.nextLine());
 
         }
 
