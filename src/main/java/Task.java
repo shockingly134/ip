@@ -1,4 +1,4 @@
-public class Task extends Thopz{
+public class Task {
     public String tasks;
     private boolean done;
 
