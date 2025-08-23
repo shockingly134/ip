@@ -10,7 +10,7 @@ public class Thopz {
     public static String greetings = "Wassup wassup! Life ok? Vibes ok? Family ok? " +
             "I am thopz your virtual chatbot. " +
             "How may I help you?" ;
-    public static String goodbye = "Chaoz. See you ! ";
+    public static String goodbye = "Chaoz. See you !";
 
     public static void main(String[] args) {
 
