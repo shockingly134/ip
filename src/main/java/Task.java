@@ -24,6 +24,10 @@ public class Task {
 
     }
 
+    public String saveformat() {
+        return "NIL";
+    }
+
     @Override
     public String toString() {
         if(this.done) {

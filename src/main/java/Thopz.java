@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +17,13 @@ public class Thopz {
 
         Scanner scan = new Scanner(System.in);
         List<Task> ls = new ArrayList<>();
+        Storage storage = new Storage("Taskstorage.txt");
 
+        try {
+            ls = storage.load();
+        } catch (IOException e) {
+            System.out.println("No saved tasks!");;
+        }
 
         System.out.println("" + greetings);
         String inp = scan.nextLine();
@@ -36,6 +43,11 @@ public class Thopz {
                         if (no >= 1 && no <= ls.size()) {
                             ls.get(no - 1).markTask();
                             System.out.println("Solidd! I have marked this task as done \n" + ls.get(no - 1).toString());
+                            try {
+                                storage.save(ls);
+                            } catch (IOException e) {
+                                System.out.println("Cannot save");;
+                            }
                         } else {
                             System.out.println("bruh, out of range");
                         }
@@ -58,6 +70,13 @@ public class Thopz {
                     String due = parts[1];
                     ls.add(new Deadline(desc, due));
                     System.out.println("Orrite, I have added " + inp + "\nYou have " + ls.size() + " tasks");
+                    try {
+                        storage.save(ls);
+                    }
+                    catch (IOException e) {
+                        System.out.println("Cannot save changes");
+                    }
+
                 }
 
 
@@ -77,6 +96,12 @@ public class Thopz {
                     String end = parts[2];
                     ls.add(new Events(desc, begin, end));
                     System.out.println("Orrite, I have added " + inp + "\nYou have " + ls.size() + " tasks");
+                    try {
+                        storage.save(ls);
+                    }
+                    catch (IOException e) {
+                        System.out.println("Cannot save changes");
+                    }
                 }
 
                 // Todo task with js a message
@@ -89,6 +114,12 @@ public class Thopz {
                     String desc = inp.substring(5);
                     ls.add(new Todo(desc));
                     System.out.println("Orrite, I have added " + inp + "\nYou have " + ls.size() + " tasks");
+                    try {
+                        storage.save(ls);
+                    }
+                    catch (IOException e) {
+                        System.out.println("Cannot save changes");
+                    }
                 }
 
                 else if (inp.startsWith("delete ")) {
@@ -98,6 +129,12 @@ public class Thopz {
                         if (no >= 1 && no <= ls.size()) {
                             ls.remove(no-1);
                             System.out.println("Solidd! I have deleted this task as done \n" + ls.get(no - 1).toString());
+                            try {
+                                storage.save(ls);
+                            }
+                            catch (IOException e) {
+                                System.out.println("Cannot save changes");
+                            }
                         } else {
                             System.out.println("bruh, out of range");
                         }

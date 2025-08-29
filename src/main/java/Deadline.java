@@ -8,6 +8,11 @@ public class Deadline extends Task{
     }
 
     @Override
+    public String saveformat() {
+        return  "D / " + (getTaskStatus() ? "1" : "0") + " / " + getTasks() + " / " + due;
+    }
+
+    @Override
     public String toString() {
         return "[D]" + super.toString() + " (due by " + due + ")";
     }
