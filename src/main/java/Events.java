@@ -1,4 +1,5 @@
-public class Events extends Task{
+public class Events extends Task {
+
     private String start;
     private String end;
 
@@ -10,7 +11,14 @@ public class Events extends Task{
     }
 
     @Override
-    public String toString() {
-        return "[E]" + super.toString() + " (Starts on : " + start + ", ends by : " + end + ")"  ;
+    public String saveformat() {
+        return "E / " + (getTaskStatus() ? "1" : "0") + " / " + getTasks()
+                + " / " + start + " / " + end;
     }
+
+    @Override
+    public String toString() {
+        return "[E]" + super.toString() + " (Starts on : " + start + ", ends by : " + end + ")";
+    }
+
 }
