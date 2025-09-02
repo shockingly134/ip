@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Thopz {
 
@@ -17,13 +19,14 @@ public class Thopz {
 
         Scanner scan = new Scanner(System.in);
         List<Task> ls = new ArrayList<>();
-        Storage storage = new Storage("Taskstorage.txt");
+        Storage storage = new Storage("TaskStorage.txt");
 
         try {
             ls = storage.load();
         } catch (IOException e) {
             System.out.println("No saved tasks!");;
         }
+
 
         System.out.println("" + greetings);
         String inp = scan.nextLine();
@@ -33,9 +36,18 @@ public class Thopz {
         while (!inp.equals("bye")) {
             try {
                 if (inp.equals("list")) {
+
+                    if(ls.isEmpty()) {
+                        System.out.println("You have no tasks in your list");
+                    }
+                    else {
                     for (int i = 0; i < ls.size(); i++) {
                         System.out.println((i + 1) + ". " + ls.get(i));
                     }
+                    }
+
+
+
                 } else if (inp.startsWith("mark ")) {
                     try {
                         String[] parts = inp.split(" ");
@@ -65,7 +77,7 @@ public class Thopz {
                         throw new IllegalArgumentException("You should add a / after your description to specify deadline");
                     }
 
-                    String[] parts = inp.split("/");
+                    String[] parts = inp.split("/",2);
                     String desc = parts[0].substring(9);
                     String due = parts[1];
                     ls.add(new Deadline(desc, due));
@@ -82,15 +94,17 @@ public class Thopz {
 
                 // Event would have // which show start and end, so by splitting can create new Event task
                 else if (inp.startsWith("event ")) {
-                    String des =inp.substring(9);
+                    String des =inp.substring(6);
+                    int count = inp.split(" /", -1).length - 1;
                     if(des.isEmpty()) {
                         throw new IllegalArgumentException("You should give an description!");
                     }
-                    else if (!inp.contains("/")) {
+                    else if (count<2) {
                         throw new IllegalArgumentException("You should add 2 slashes / after your description " +
+                                "ensure that you have a space before your 2 slashes" +
                                 "to specify event start and end date e.g(eating / Monday / Tuesday");
                     }
-                    String[] parts = inp.split("/");
+                    String[] parts = inp.split(" /",3);
                     String desc = parts[0].substring(6);
                     String begin = parts[1];
                     String end = parts[2];
@@ -127,8 +141,8 @@ public class Thopz {
                         String[] parts = inp.split(" ");
                         int no = Integer.parseInt(parts[1]);
                         if (no >= 1 && no <= ls.size()) {
-                            ls.remove(no-1);
-                            System.out.println("Solidd! I have deleted this task as done \n" + ls.get(no - 1).toString());
+                            Task removed = ls.remove(no-1);
+                            System.out.println("Solidd! I have deleted this task as done \n" + removed);
                             try {
                                 storage.save(ls);
                             }
