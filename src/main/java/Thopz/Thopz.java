@@ -1,11 +1,8 @@
-import java.awt.*;
+package Thopz;
+
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 
 public class Thopz {
 
@@ -54,7 +51,7 @@ public class Thopz {
     }
 
     public static void main(String[] args) {
-        new Thopz("TaskStorage.txt").run();
+        new Thopz("Thopz/TaskStorage.txt").run();
     }
 
 

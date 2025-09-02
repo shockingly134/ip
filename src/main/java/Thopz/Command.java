@@ -1,4 +1,4 @@
-/**
+package Thopz; /**
  * Abstract command class
  */
 

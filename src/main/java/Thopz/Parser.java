@@ -1,4 +1,4 @@
-import java.io.IOException;
+package Thopz;
 
 /**
  * Parser class to parse user inputs

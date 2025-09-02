@@ -1,23 +1,22 @@
+package Thopz;
+
 import java.io.IOException;
 
-
 /**
- * Adding a new event task
+ * Adding a new todo task
  */
-public class AddEventCommand extends Command {
-    private String desc;
-    private String start;
-    private String end;
 
-    public AddEventCommand(String desc, String start, String end) {
-        this.desc =desc;
-        this.start = start;
-        this.end = end;
+public class AddTODOCommand extends Command {
+
+    private String desc;
+
+    public AddTODOCommand(String desc) {
+        this.desc = desc;
     }
 
     @Override
     public void perform (TaskList list, Storage storage, Ui ui) {
-        Events task = new Events(desc,start,end);
+        Todo task = new Todo(desc);
         list.addTask(task);
         try {
             storage.save(list.getAllTasks());
@@ -27,4 +26,5 @@ public class AddEventCommand extends Command {
         }
         ui.showAddition(task,list.size());
     }
+
 }

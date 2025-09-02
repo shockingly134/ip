@@ -1,11 +1,11 @@
+package Thopz;
+
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Events extends Task {
-
-    private String start;
-    private String end;
+public class Deadline extends Task{
+    private String due;
     public static final DateTimeFormatter[] INPUT_FORMATS = new DateTimeFormatter[] {
             DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"),
             DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"),
@@ -14,17 +14,10 @@ public class Events extends Task {
     };
     public static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("MMM dd yyyy, HH:mm");
 
-
-    public Events(String desc, String start, String end) {
-        super(desc);
-        this.start = start;
-        this.end = end;
-        this.start = parseDate(start.trim());
-        if(this.start==null) {
-            throw new IllegalArgumentException("give in date and time format");
-        }
-        this.end = parseDate(end.trim());
-        if(this.end==null) {
+    public Deadline (String tasks, String string) {
+        super(tasks);
+        this.due = parseDate(string.trim());
+        if(this.due==null) {
             throw new IllegalArgumentException("give in date and time format");
         }
     }
@@ -41,15 +34,15 @@ public class Events extends Task {
         return dateString;
     }
 
+
+
     @Override
     public String saveformat() {
-        return "E / " + (getTaskStatus() ? "1" : "0") + " / " + getTasks()
-                + " / " + start + " / " + end;
+        return  "D / " + (getTaskStatus() ? "1" : "0") + " / " + getTasks() + " / " + due;
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (Starts on : " + start + ", ends by : " + end + ")";
+        return "[D]" + super.toString() + " (due by "  + due +")";
     }
-
 }

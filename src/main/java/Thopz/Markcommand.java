@@ -1,33 +1,34 @@
+package Thopz;
+
 import java.io.IOException;
 
 /**
- * Remove a task from the tasklist
+ * Mark a task from the tasklist
  */
 
-public class RemoveCommand extends Command {
+public class Markcommand extends Command {
 
     private int no;
 
-    public RemoveCommand(int no) {
+    public Markcommand(int no) {
         this.no = no;
     }
 
     @Override
     public void perform(TaskList ls, Storage storage, Ui ui) {
-        if (ls.size() == 0) {
-            throw new IllegalArgumentException("No more tasks to delete!");
+        if (no < 0 || no > ls.size()) {
+            throw new IllegalArgumentException("bruh, out of range");
         }
+        else {
+            Task task = ls.getTask(no-1);
+            task.markTask();
 
-        if (no >= 1 && no <= ls.size()) {
-
-            Task removed = ls.removeTask(no);
             try {
                 storage.save(ls.getAllTasks());
             } catch (IOException e) {
                 System.out.println("Cannot save changes");
             }
-            ui.showRemoval(removed, ls.size());
+            ui.showMarked(task);
         }
-
     }
 }
