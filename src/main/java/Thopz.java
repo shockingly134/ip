@@ -9,8 +9,64 @@ import java.time.LocalDateTime;
 
 public class Thopz {
 
-    public String bot = "thopz";
-    public static String greetings = "Wassup wassup! Life ok? Vibes ok? Family ok? " +
+    private TaskList ls;
+    private Storage storage;
+    private Ui ui;
+
+    public Thopz(String filePath) {
+        this.storage = new Storage(filePath);
+        this.ui = new Ui();
+        try {
+            ls = new TaskList(storage.load());
+        } catch (IOException e) {
+            ui.showLoadingError();
+            ls = new TaskList(new ArrayList<>());
+        }
+    }
+
+    /**
+     * run command which will call the start of the chatbot
+     * will only exit upon bye
+     */
+
+    public void run() {
+        ui.showGreetings();
+        boolean isDone = false;
+        while(!isDone) {
+            try {
+                String fullInput = ui.readInput();
+                Command command = Parser.parse(fullInput);
+                command.perform(ls,storage,ui);
+                isDone = command.isDone();
+
+            } catch (IOException e) {
+               e.getMessage();
+            }
+            catch (IllegalArgumentException e) {
+                ui.showError(e.getMessage());
+            }
+
+            catch (Exception e) {
+                ui.showError(e.getMessage());
+            }
+        }
+        ui.showGoodbye();
+    }
+
+    public static void main(String[] args) {
+        new Thopz("TaskStorage.txt").run();
+    }
+
+
+
+
+
+
+
+}
+
+
+    /*public static String greetings = "Wassup wassup! Life ok? Vibes ok? Family ok? " +
             "I am thopz your virtual chatbot. " +
             "How may I help you?" ;
     public static String goodbye = "Chaoz. See you !";
@@ -181,3 +237,5 @@ public class Thopz {
 
     }
 }
+*/
+
