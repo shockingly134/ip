@@ -51,7 +51,7 @@ public class Thopz {
     }
 
     public static void main(String[] args) {
-        new Thopz("Thopz/TaskStorage.txt").run();
+        new Thopz("TaskStorage.txt").run();
     }
 
 
