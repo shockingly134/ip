@@ -12,10 +12,12 @@ public class Parser {
      * Include various way to split the data to achieve right command
      * Invalid inputs throw and exception
      *  Deadline would have one /, so splitting words and taking the required once
+     *  find would require a space before inputting the string to filter the task list
      */
     public static Command parse (String inp) {
         if (inp.equals("bye")) {
             return new ExitCommand();
+
         } else if (inp.equals("list")) {
             return new ListCommand();
 
@@ -68,6 +70,7 @@ public class Parser {
             }
             String desc = inp.substring(5);
             return new AddTODOCommand(desc);
+
         } else if (inp.startsWith("delete ")) {
             try {
                 String[] parts = inp.split(" ");
@@ -76,6 +79,15 @@ public class Parser {
 
             } catch (Exception e) {
                 throw new IllegalArgumentException("Invalid delete command, use delete <task_no>, e.g(delete 2)..");
+            }
+
+        } else if (inp.startsWith("find ")) {
+            String find = inp.substring(5);
+            if(find.isEmpty()) {
+                throw new IllegalArgumentException("You should give an description!");
+            }
+            else {
+                return new FindCommand(find);
             }
         } else {
             throw new IllegalArgumentException("uhh, idk what you are saying! You gotta start with what kind" +
