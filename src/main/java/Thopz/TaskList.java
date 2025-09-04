@@ -69,7 +69,7 @@ public class TaskList {
 
 
     public Task getTask (int no) {
-        return ls.get(no);
+        return ls.get(no-1);
     }
 
 }

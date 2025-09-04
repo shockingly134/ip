@@ -20,7 +20,7 @@ public class Markcommand extends Command {
             throw new IllegalArgumentException("bruh, out of range");
         }
         else {
-            Task task = ls.getTask(no-1);
+            Task task = ls.getTask(no);
             task.markTask();
 
             try {
