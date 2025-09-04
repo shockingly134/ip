@@ -51,6 +51,27 @@ public class TaskList {
         }
     }
 
+
+    /**
+     * Get specific tasks from tasklist
+     * Throw illegal argument if no tasks found
+     */
+
+    public void findTasks (String string) {
+
+        boolean found = false;
+        for (int i = 0; i < ls.size(); i++) {
+            if (ls.get(i).toString().contains(string)) {
+                System.out.println(i+1 +". " + ls.get(i));
+                found = true;
+            }
+        }
+        if(!found) {
+            throw new IllegalArgumentException("No such tasks with the keywords!");
+        }
+    }
+
+
     /**
      * Get all tasks from tasklist
      */

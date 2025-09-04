@@ -68,6 +68,16 @@ public class Ui {
     }
 
     /**
+     * Message to show tasks filtered on keywords
+     */
+
+
+    public void showFind() {
+        System.out.println("These are the tasks with matching key words");
+    }
+
+
+    /**
      * Message for marking of task
      */
 
