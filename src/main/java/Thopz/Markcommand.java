@@ -14,6 +14,11 @@ public class Markcommand extends Command {
         this.no = no;
     }
 
+    /**
+     * Perform command which marks
+     * will only exit upon bye
+     */
+
     @Override
     public void perform(TaskList ls, Storage storage, Ui ui) {
         if (no < 0 || no > ls.size()) {
