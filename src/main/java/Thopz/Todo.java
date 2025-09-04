@@ -1,5 +1,10 @@
 package Thopz;
 
+/**
+ * Implementation of todo task
+ * extends task, takes in only a description
+ */
+
 public class Todo extends Task {
 
     public Todo(String desc) {
