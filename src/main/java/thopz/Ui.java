@@ -1,18 +1,21 @@
-package Thopz;
+package thopz;
 
 import java.util.List;
 import java.util.Scanner;
 
+
 /**
  * User interface class for reading and understanding various
- * user inputs and outputs
- *
+ * user inputs and outputs.
  */
-
 
 public class Ui {
 
-    private Scanner sc;
+    private final Scanner sc;
+
+    /**
+     * Constructs user interface class which takes in user input
+     */
 
     public Ui() {
         sc = new Scanner(System.in);
@@ -31,9 +34,9 @@ public class Ui {
      */
 
     public void showGreetings() {
-        System.out.println("Wassup wassup! Life ok? Vibes ok? Family ok? " +
-                "I am thopz your virtual chatbot. " +
-                "How may I help you?");
+        System.out.println("Wassup wassup! Life ok? Vibes ok? Family ok? "
+                + "I am thopz your virtual chatbot. "
+                + "How may I help you?");
     }
 
     /**
@@ -41,7 +44,7 @@ public class Ui {
      */
 
     public void showGoodbye() {
-        System.out.println( "Chaoz. See you !");
+        System.out.println("Chaoz. See you !");
     }
 
 
@@ -54,8 +57,8 @@ public class Ui {
      */
 
     public void showAddition(Task task, int size) {
-        System.out.println("Orrite, I have added " + task +
-                "\nYou have " + size + " tasks");
+        System.out.println("Orrite, I have added " + task
+                + "\nYou have " + size + " tasks");
     }
 
     /**
@@ -110,4 +113,5 @@ public class Ui {
 
         }
     }
+
 }

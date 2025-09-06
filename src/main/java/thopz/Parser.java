@@ -1,4 +1,4 @@
-package Thopz;
+package thopz;
 
 /**
  * Parser class to parse user inputs
@@ -11,10 +11,10 @@ public class Parser {
      * if bye end the program,
      * Include various way to split the data to achieve right command
      * Invalid inputs throw and exception
-     *  Deadline would have one /, so splitting words and taking the required once
-     *  find would require a space before inputting the string to filter the task list
+     * Deadline would have one /, so splitting words and taking the required once
+     * find would require a space before inputting the string to filter the task list
      */
-    public static Command parse (String inp) {
+    public static Command parse(String inp) {
         if (inp.equals("bye")) {
             return new ExitCommand();
 
@@ -33,26 +33,25 @@ public class Parser {
         } else if (inp.startsWith("deadline ")) {
             String[] parts = inp.split(" /", 2);
             if (parts.length != 2) {
-                throw new IllegalArgumentException("You should add a / after your description to specify deadline" +
-                        "Also note that there should be a space between your slash " +
-                        "e.g deadline fight / 12/12/2025 19:55");
+                throw new IllegalArgumentException("You should add a / after your description to specify deadline"
+                        + "Also note that there should be a space between your slash "
+                        + "e.g deadline fight / 12/12/2025 19:55");
             }
             String desc = parts[0].substring(9);
             String due = parts[1];
             return new AddDeadlineCommand(desc, due);
-        }
 
-        // Event would have // which show start and end, so by splitting can create new Event task
-        else if (inp.startsWith("event ")) {
+        } else if (inp.startsWith("event ")) {
+            // Event would have // which show start and end, so by splitting can create new Event task
 
             String des = inp.substring(6);
             int count = inp.split(" /", -1).length - 1;
             if (des.isEmpty()) {
                 throw new IllegalArgumentException("You should give an description!");
             } else if (count < 2) {
-                throw new IllegalArgumentException("You should add 2 slashes / after your description " +
-                        "ensure that you have a space before your 2 slashes" +
-                        "to specify event start and end date e.g(eating / Monday / Tuesday");
+                throw new IllegalArgumentException("You should add 2 slashes / after your description "
+                        + "ensure that you have a space before your 2 slashes"
+                        + "to specify event start and end date e.g(eating / Monday / Tuesday");
             }
             String[] parts = inp.split(" /", 3);
             String desc = parts[0].substring(6);
@@ -60,16 +59,16 @@ public class Parser {
             String end = parts[2];
             return new AddEventCommand(desc, begin, end);
 
-        }
+        } else if (inp.startsWith("todo ")) {
 
-        // Todo task with js a message
-        else if (inp.startsWith("todo ")) {
+            // Todo task with js a message
+
             String des = inp.substring(5);
             if (des.isEmpty()) {
                 throw new IllegalArgumentException("You should give an description!");
             }
             String desc = inp.substring(5);
-            return new AddTODOCommand(desc);
+            return new AddTodoCommand(desc);
 
         } else if (inp.startsWith("delete ")) {
             try {
@@ -83,15 +82,14 @@ public class Parser {
 
         } else if (inp.startsWith("find ")) {
             String find = inp.substring(5);
-            if(find.isEmpty()) {
+            if (find.isEmpty()) {
                 throw new IllegalArgumentException("You should give an description!");
-            }
-            else {
+            } else {
                 return new FindCommand(find);
             }
         } else {
-            throw new IllegalArgumentException("uhh, idk what you are saying! You gotta start with what kind" +
-                    "of task you wish to add,(e.g todo homework, deadline eating/Monday, etc");
+            throw new IllegalArgumentException("uhh, idk what you are saying! You gotta start with what kind"
+                    + "of task you wish to add,(e.g todo homework, deadline eating/Monday, etc");
         }
     }
 }

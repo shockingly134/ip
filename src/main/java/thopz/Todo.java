@@ -1,4 +1,4 @@
-package Thopz;
+package thopz;
 
 /**
  * Implementation of todo task
@@ -7,6 +7,12 @@ package Thopz;
 
 public class Todo extends Task {
 
+    /**
+     * Constructs a todo class
+     *
+     * @param desc description to create todo class
+     *
+     */
     public Todo(String desc) {
         super(desc);
     }
@@ -20,4 +26,5 @@ public class Todo extends Task {
     public String toString() {
         return "[T]" + super.toString();
     }
+
 }

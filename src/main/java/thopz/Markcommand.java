@@ -1,4 +1,4 @@
-package Thopz;
+package thopz;
 
 import java.io.IOException;
 
@@ -8,23 +8,34 @@ import java.io.IOException;
 
 public class Markcommand extends Command {
 
-    private int no;
+    private final int no;
+
+    /**
+     * Constructs a mark to specified tasks
+     *
+     * @param no  no of the task
+     *
+     *
+     */
 
     public Markcommand(int no) {
         this.no = no;
     }
 
+
     /**
-     * Perform command which marks
-     * will only exit upon bye
+     * Executes the mark command by marking a certain task in the list
+     *
+     * @param ls   The task list that the event will be added to.
+     * @param ui      The UI that handles user interaction.
+     * @param storage The storage that saves task data.
      */
 
     @Override
     public void perform(TaskList ls, Storage storage, Ui ui) {
         if (no < 0 || no > ls.size()) {
             throw new IllegalArgumentException("bruh, out of range");
-        }
-        else {
+        } else {
             Task task = ls.getTask(no);
             task.markTask();
 

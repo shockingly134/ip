@@ -1,6 +1,12 @@
-import Thopz.*;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import thopz.Deadline;
+import thopz.Events;
+import thopz.Task;
+import thopz.TaskList;
+import thopz.Todo;
 
 /**
  * Testing tasklist whether it can be added
@@ -10,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TaskListTest {
 
-@Test
+    @Test
     void addTest() {
         TaskList ls = new TaskList();
         Task task1 = new Todo("test1");
@@ -38,4 +44,5 @@ class TaskListTest {
         assertEquals("test1", ls.getTask(1).getTasks());
         assertEquals("test3", ls.getTask(2).getTasks());
     }
+
 }

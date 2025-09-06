@@ -1,4 +1,4 @@
-package Thopz;
+package thopz;
 
 import java.io.IOException;
 
@@ -8,7 +8,15 @@ import java.io.IOException;
 
 public class RemoveCommand extends Command {
 
-    private int no;
+    private final int no;
+
+    /**
+     * Constructs a command to remove specified tasks
+     *
+     * @param no  the task number to be removed
+     *
+     *
+     */
 
     public RemoveCommand(int no) {
         this.no = no;
@@ -32,4 +40,5 @@ public class RemoveCommand extends Command {
         }
 
     }
+
 }

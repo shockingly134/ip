@@ -1,4 +1,4 @@
-package Thopz;
+package thopz;
 
 /**
  *

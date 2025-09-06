@@ -1,4 +1,4 @@
-package Thopz;
+package thopz;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -8,29 +8,32 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- *
  * Storage class used to store and save data
- *
  */
 
 public class Storage {
 
-    private String fileLocation;
-
-    public Storage(String fileLocation) {
-        this.fileLocation =fileLocation;
-    }
+    private final String fileLocation;
 
     /**
+     * Constructs a Storage to store lists which where previously created
      *
-     * Save the various tasks to the file
+     * @param fileLocation  location of file to save date
      *
      */
 
-    public void save (List<Task> tasks) throws IOException {
+    public Storage(String fileLocation) {
+        this.fileLocation = fileLocation;
+    }
+
+    /**
+     * Save the various tasks to the file
+     */
+
+    public void save(List<Task> tasks) throws IOException {
 
         FileWriter fw = new FileWriter(fileLocation);
-        for (Task t : tasks)   {
+        for (Task t : tasks) {
             fw.write(t.saveformat() + "\n");
         }
         fw.close();
@@ -39,14 +42,13 @@ public class Storage {
     /**
      * Load the tasks from the file
      * Mark the specific tasks depending on whether it was marked
-     *
      */
-    public ArrayList<Task> load () throws IOException {
+    public ArrayList<Task> load() throws IOException {
 
         ArrayList<Task> tasks = new ArrayList<>();
         File file = new File(fileLocation);
 
-        if(!file.exists()) {
+        if (!file.exists()) {
             throw new IOException("File doesn't exist");
         }
 
