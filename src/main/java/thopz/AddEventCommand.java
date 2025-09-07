@@ -35,14 +35,14 @@ public class AddEventCommand extends Command {
      */
 
     @Override
-    public void perform(TaskList list, Storage storage, Ui ui) {
+    public String perform(TaskList list, Storage storage, Ui ui) {
         Events task = new Events(desc, start, end);
         list.addTask(task);
         try {
             storage.save(list.getAllTasks());
         } catch (IOException e) {
-            System.out.println("Cannot save changes");
+            return("Cannot save changes");
         }
-        ui.showAddition(task, list.size());
+        return ui.showAddition(task, list.size());
     }
 }

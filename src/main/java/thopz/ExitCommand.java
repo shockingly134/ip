@@ -25,7 +25,8 @@ public class ExitCommand extends Command {
      */
 
     @Override
-    public void perform(TaskList ls, Storage storage, Ui ui) {
+    public String perform(TaskList ls, Storage storage, Ui ui) {
+        return null;
     }
 
 }

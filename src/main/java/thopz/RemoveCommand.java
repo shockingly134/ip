@@ -23,7 +23,7 @@ public class RemoveCommand extends Command {
     }
 
     @Override
-    public void perform(TaskList ls, Storage storage, Ui ui) {
+    public String perform(TaskList ls, Storage storage, Ui ui) {
         if (ls.size() == 0) {
             throw new IllegalArgumentException("No more tasks to delete!");
         }
@@ -36,9 +36,10 @@ public class RemoveCommand extends Command {
             } catch (IOException e) {
                 System.out.println("Cannot save changes");
             }
-            ui.showRemoval(removed, ls.size());
-        }
+            return ui.showRemoval(removed, ls.size());
 
+        }
+        return null;
     }
 
 }

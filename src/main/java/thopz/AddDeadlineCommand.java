@@ -32,15 +32,15 @@ public class AddDeadlineCommand extends Command {
      * @param storage The storage that saves task data.
      */
     @Override
-    public void perform(TaskList list, Storage storage, Ui ui) {
+    public String perform(TaskList list, Storage storage, Ui ui) {
         Deadline task = new Deadline(desc, due);
         list.addTask(task);
         try {
             storage.save(list.getAllTasks());
         } catch (IOException e) {
-            System.out.println("Cannot save changes");
+            return "Cannot save changes";
         }
-        ui.showAddition(task, list.size());
+        return ui.showAddition(task, list.size());
 
     }
 }

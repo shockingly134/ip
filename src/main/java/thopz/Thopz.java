@@ -62,6 +62,28 @@ public class Thopz {
         ui.showGoodbye();
     }
 
+    /**
+     * Get response will call the application to run..
+     * @param input
+     * @return
+     */
+
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            String output = command.perform(ls, storage, ui);
+            if (command.isDone()) {
+                return output + ui.showGoodbye() +"!";
+            }
+            return output;
+        } catch (IOException | IllegalArgumentException e) {
+            return e.getMessage();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
+
 }
 
 

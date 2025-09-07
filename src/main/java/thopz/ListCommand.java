@@ -7,8 +7,8 @@ package thopz;
 public class ListCommand extends Command {
 
     @Override
-    public void perform(TaskList ls, Storage storage, Ui ui) {
-        ui.showList(ls.getAllTasks());
+    public String perform(TaskList ls, Storage storage, Ui ui) {
+       return ui.showList(ls.getAllTasks());
     }
 
 }

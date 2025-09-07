@@ -32,7 +32,7 @@ public class Markcommand extends Command {
      */
 
     @Override
-    public void perform(TaskList ls, Storage storage, Ui ui) {
+    public String perform(TaskList ls, Storage storage, Ui ui) {
         if (no < 0 || no > ls.size()) {
             throw new IllegalArgumentException("bruh, out of range");
         } else {
@@ -44,7 +44,7 @@ public class Markcommand extends Command {
             } catch (IOException e) {
                 System.out.println("Cannot save changes");
             }
-            ui.showMarked(task);
+            return ui.showMarked(task);
         }
     }
 }

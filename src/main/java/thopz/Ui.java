@@ -33,41 +33,41 @@ public class Ui {
      * Welcome message
      */
 
-    public void showGreetings() {
-        System.out.println("Wassup wassup! Life ok? Vibes ok? Family ok? "
+    public String showGreetings() {
+        return "Wassup wassup! Life ok? Vibes ok? Family ok? "
                 + "I am thopz your virtual chatbot. "
-                + "How may I help you?");
+                + "How may I help you?";
     }
 
     /**
      * Goodbye message
      */
 
-    public void showGoodbye() {
-        System.out.println("Chaoz. See you !");
+    public String showGoodbye() {
+        return "Chaoz. See you !";
     }
 
 
-    public void showError(String msg) {
-        System.out.println("OOPS!!!!!" + msg);
+    public String showError(String msg) {
+        return ("OOPS!!!!!" + msg);
     }
 
     /**
      * Message for addition of task
      */
 
-    public void showAddition(Task task, int size) {
-        System.out.println("Orrite, I have added " + task
-                + "\nYou have " + size + " tasks");
+    public String showAddition(Task task, int size) {
+        return"Orrite, I have added " + task
+                + "\nYou have " + size + " tasks";
     }
 
     /**
      * Message for removal of task
      */
 
-    public void showRemoval(Task task, int size) {
-        System.out.println("Solidd! I have deleted this task as done \n" + task
-                + "\nYou have " + size + " tasks");
+    public String showRemoval(Task task, int size) {
+        return "Solidd! I have deleted this task as done \n" + task
+                + "\nYou have " + size + " tasks";
     }
 
     /**
@@ -75,8 +75,16 @@ public class Ui {
      */
 
 
-    public void showFind() {
-        System.out.println("These are the tasks with matching key words");
+    public String showFind(List<String> matchedTasks) {
+        if (matchedTasks.isEmpty()) {
+            return "No tasks match your keyword.";
+        }
+
+        StringBuilder sb = new StringBuilder("These are the tasks with matching key words:\n");
+        for (int i = 0; i < matchedTasks.size(); i++) {
+            sb.append(i + 1).append(". ").append(matchedTasks.get(i)).append("\n");
+        }
+        return sb.toString().trim();
     }
 
 
@@ -85,8 +93,8 @@ public class Ui {
      */
 
 
-    public void showMarked(Task task) {
-        System.out.println("Solidd! I have marked this task as done \n" + task);
+    public String showMarked(Task task) {
+        return ("Solidd! I have marked this task as done \n" + task);
     }
 
     /**
@@ -94,8 +102,8 @@ public class Ui {
      */
 
 
-    public void showLoadingError() {
-        System.out.println("No saved tasks");
+    public String showLoadingError() {
+       return ("No saved tasks");
     }
 
     /**
@@ -103,15 +111,18 @@ public class Ui {
      * Empty list case is also handled
      */
 
-    public void showList(List<Task> ls) {
-        if (ls.isEmpty()) {
-            System.out.println("You have no tasks in your list");
-        } else {
-            for (int i = 0; i < ls.size(); i++) {
-                System.out.println((i + 1) + ". " + ls.get(i));
-            }
+    public String showList(List<Task> ls) {
 
+        if (ls.isEmpty()) {
+            return ("You have no tasks in your list");
+        } else {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < ls.size(); i++) {
+                sb.append(i + 1).append(". ").append(ls.get(i)).append("\n");
+            }
+            return sb.toString().trim();
         }
     }
+
 
 }

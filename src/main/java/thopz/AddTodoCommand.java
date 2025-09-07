@@ -30,15 +30,15 @@ public class AddTodoCommand extends Command {
      */
 
     @Override
-    public void perform(TaskList list, Storage storage, Ui ui) {
+    public String perform(TaskList list, Storage storage, Ui ui) {
         Todo task = new Todo(desc);
         list.addTask(task);
         try {
             storage.save(list.getAllTasks());
         } catch (IOException e) {
-            System.out.println("Cannot save changes");
+            return "Cannot save changes";
         }
-        ui.showAddition(task, list.size());
+        return ui.showAddition(task, list.size()); // return string instead of void
     }
 
 }

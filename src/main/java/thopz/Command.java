@@ -25,6 +25,6 @@ public abstract class Command {
      * @param storage The storage that saves task data.
      */
 
-    public abstract void perform(TaskList list, Storage storage, Ui ui) throws IOException;
+    public abstract String perform(TaskList list, Storage storage, Ui ui) throws IOException;
 
 }

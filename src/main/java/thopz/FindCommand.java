@@ -1,5 +1,7 @@
 package thopz;
 
+import java.util.List;
+
 /**
  * Find and display a certain list of tasks
  * Narrow down tasklist based on key word
@@ -32,16 +34,12 @@ public class FindCommand extends Command {
      */
 
     @Override
-    public void perform(TaskList ls, Storage storage, Ui ui) {
-
-        if (ls.size() > 0) {
-            try {
-                ls.findTasks(find);
-                ui.showFind();
-            } catch (IllegalArgumentException e) {
-                ui.showError(e.getMessage());
-            }
-
+    public String perform(TaskList ls, Storage storage, Ui ui) {
+        try {
+            List<String> matchedTasks = ls.findTasks(find);  // capture matched tasks
+            return ui.showFind(matchedTasks);              // pass only matches to UI
+        } catch (IllegalArgumentException e) {
+            return ui.showError(e.getMessage());
         }
     }
 }
