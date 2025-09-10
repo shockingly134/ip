@@ -1,5 +1,6 @@
 package thopz;
 
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -7,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 /**
  * Controller for the main GUI.
@@ -55,7 +57,7 @@ public class MainWindow extends AnchorPane {
 
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Thopz's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * the dialog container. Clears the user input after processing and closes the app after 3 sec
      */
 
     @FXML
@@ -75,8 +77,12 @@ public class MainWindow extends AnchorPane {
 
         userInput.clear();
 
-        if ("Chaoz. See you!".equals(response)) {
-            javafx.application.Platform.exit();
+        if (response.contains("Chaoz.")) {
+            PauseTransition delay = new PauseTransition(Duration.seconds(3));
+            delay.setOnFinished(event -> {
+                javafx.application.Platform.exit();
+            });
+            delay.play();
         }
     }
 

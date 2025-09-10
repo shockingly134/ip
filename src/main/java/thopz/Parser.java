@@ -89,7 +89,7 @@ public class Parser {
             }
         } else {
             throw new IllegalArgumentException("uhh, idk what you are saying! You gotta start with what kind"
-                    + "of task you wish to add,(e.g todo homework, deadline eating/Monday, etc");
+                    + " of task you wish to add,(e.g todo homework, deadline eating/Monday, etc");
         }
     }
 }
