@@ -56,6 +56,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
+     *
      * Creates two dialog boxes, one echoing user input and the other containing Thopz's reply and then appends them to
      * the dialog container. Clears the user input after processing and closes the app after 3 sec
      */

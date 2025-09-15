@@ -15,6 +15,9 @@ public class Parser {
      * find would require a space before inputting the string to filter the task list
      */
     public static Command parse(String inp) {
+
+        assert inp!=null : "Command should not be null";
+
         if (inp.equals("bye")) {
             return new ExitCommand();
 

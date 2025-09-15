@@ -98,6 +98,7 @@ public class TaskList {
 
 
     public Task getTask(int no) {
+        assert no>0 && no<=ls.size() : "Give a valid task number" ;
         return ls.get(no - 1);
     }
 
