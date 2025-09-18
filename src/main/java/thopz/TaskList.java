@@ -46,15 +46,6 @@ public class TaskList {
     }
 
 
-    /**
-     * Get tasks from tasklist
-     */
-
-    public void listTasks() {
-        for (int i = 0; i < ls.size(); i++) {
-            System.out.println((i + 1) + ". " + ls.get(i));
-        }
-    }
 
 
     /**
@@ -65,17 +56,13 @@ public class TaskList {
     public List<String> findTasks(String string) {
 
         List<String> matched =new ArrayList<>();
-        boolean found = false;
         for (int i = 0; i < ls.size(); i++) {
             Task task = ls.get(i);
             if (ls.get(i).toString().contains(string)) {
                 matched.add(" [" + (i+1) + ". " + task.toString()+"]");
-                found = true;
             }
         }
-        if (!found) {
-            throw new IllegalArgumentException("No such tasks with the keywords!");
-        }
+
         return matched;
     }
 
