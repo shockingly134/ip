@@ -51,14 +51,31 @@ public class TaskList {
     /**
      * Get specific tasks from tasklist
      * Throw illegal argument if no tasks found
+     * Updated find task to find based on matching keywords
+     * Partially typed words will also be shown in the list
      */
 
     public List<String> findTasks(String string) {
 
+        assert string != null : "Keywords should not be null";
+
         List<String> matched =new ArrayList<>();
+
+        String[] keywords = string.toLowerCase().split("\\s");
+
         for (int i = 0; i < ls.size(); i++) {
             Task task = ls.get(i);
-            if (ls.get(i).toString().contains(string)) {
+            String finder = task.toString().toLowerCase();
+            boolean isMatch = true;
+
+            for(String keyword : keywords) {
+                if(!finder.contains(keyword)) {
+                    isMatch = false;
+                    break;
+                }
+            }
+
+            if (isMatch) {
                 matched.add(" [" + (i+1) + ". " + task.toString()+"]");
             }
         }
