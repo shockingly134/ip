@@ -29,7 +29,7 @@ class TaskTest {
     @Test
     void testDeadlineTask() {
         Task task = new Deadline("test_time", "04/09/2025 21:56");
-        assertEquals("[D][] test_time (due by Sep 04 2025, 21:56)", task.toString());
+        assertEquals("[D][ ] test_time (due by Sep 04 2025, 21:56)", task.toString());
         assertFalse(task.getTaskStatus());
     }
 
