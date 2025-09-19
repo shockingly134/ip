@@ -1,7 +1,3 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 
 import thopz.Deadline;
@@ -9,6 +5,8 @@ import thopz.Events;
 import thopz.Task;
 import thopz.TaskList;
 import thopz.Todo;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -63,5 +61,39 @@ class TaskTest {
         assertEquals("test1", ls.getTask(1).getTasks());
         assertEquals("test3", ls.getTask(2).getTasks());
     }
+    @Test
+    void toString_shouldShowUncheckedBoxWhenNotDone() {
+        Task task = new Task("Read book");
+        assertEquals("[ ] Read book", task.toString());
+    }
 
+    @Test
+    void toString_shouldShowCheckedBoxWhenDone() {
+        Task task = new Task("Submit assignment");
+        task.markTask();
+        assertEquals("[x] Submit assignment", task.toString());
+    }
+
+    @Test
+    void saveFormat_shouldReturnNILByDefault() {
+        Task task = new Task("Dummy task");
+        assertEquals("NIL", task.saveformat(), "Default save format should be NIL");
+    }
+
+    @Test
+    void markAndUnmark_shouldToggleCorrectly() {
+        Task task = new Task("Go jogging");
+        assertFalse(task.getTaskStatus());
+        task.markTask();
+        assertTrue(task.getTaskStatus());
+        task.unmarkTask();
+        assertFalse(task.getTaskStatus());
+    }
+
+    @Test
+    void constructor_shouldThrowAssertionErrorIfNullDescription() {
+        assertThrows(AssertionError.class, () -> new Task(null));
+    }
 }
+
+
