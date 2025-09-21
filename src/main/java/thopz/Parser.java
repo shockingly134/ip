@@ -151,12 +151,12 @@ public class Parser {
      */
 
     private static Command parseTodoCommand (String inp) {
-        String des = inp.substring(5);
-        if (des.isEmpty()) {
+        String desc= inp.substring(5);
+        if (desc.isEmpty()) {
             throw new IllegalArgumentException("You should give an description!");
         }
-        String desc = inp.substring(5);
-        return new AddTodoCommand(desc);
+        String description = inp.substring(5);
+        return new AddTodoCommand(description);
     }
 
     /**
