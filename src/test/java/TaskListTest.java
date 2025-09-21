@@ -26,7 +26,7 @@ class TaskListTest {
         ls.addTask(task2);
         assertEquals(2, ls.size());
         ls.addTask(task3);
-        assertEquals(3., ls.size());
+        assertEquals(3, ls.size());
     }
 
     @Test
