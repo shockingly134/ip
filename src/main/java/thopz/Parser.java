@@ -19,9 +19,7 @@ public class Parser {
      * @throws IllegalArgumentException if no valid input
      */
     public static Command parse(String inp) {
-
         assert inp!=null : "Command should not be null";
-
         if (inp.equals("bye")) {
             return new ExitCommand();
 

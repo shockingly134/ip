@@ -41,8 +41,7 @@ public class MainWindow extends AnchorPane {
      * Injects the thopz instance
      * Include greetings
      *
-     * @param
-     * d
+     * @param d The Thopz chatbot instance to be injected
      */
     public void setThopz(Thopz d) {
         thopz = d;
