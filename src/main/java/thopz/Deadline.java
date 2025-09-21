@@ -16,6 +16,13 @@ public class Deadline extends Task {
             DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"),
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"),
             DateTimeFormatter.ofPattern("yyyy/dd/MM HH:mm"),
+            DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm"),
+            DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"),
+            DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"),
+            DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm"),
+            DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"),
+            DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm"),
+            DateTimeFormatter.ofPattern("yyyyMMdd HH:mm"),
     };
     public static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("MMM dd yyyy, HH:mm");
     private final String due;
