@@ -15,7 +15,9 @@ import thopz.Todo;
  */
 
 class TaskListTest {
-
+    /**
+     * Test tasks add to tasklist and verifying the size
+     */
     @Test
     void addTest() {
         TaskList ls = new TaskList();
@@ -28,6 +30,10 @@ class TaskListTest {
         ls.addTask(task3);
         assertEquals(3, ls.size());
     }
+
+    /**
+     * Test deletion of tasks from the TaskList and check the size.
+     */
 
     @Test
     void deleteTest() {
